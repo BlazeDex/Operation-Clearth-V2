@@ -1,0 +1,49 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://Sprites/SpriteSheets/ZubatFrames/z2.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/Enemies/SkyEnemies.gd" type="Script" id=2]
+[ext_resource path="res://Sprites/SpriteSheets/ZubatFrames/z3.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/SpriteSheets/ZubatFrames/z4.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/SpriteSheets/ZubatFrames/z1.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/SpriteSheets/ZubatFrames/z6.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/SpriteSheets/ZubatFrames/z5.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/SpriteSheets/ZubatFrames/z7.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/SpriteSheets/ZubatFrames/z8.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/SpriteSheets/ZubatFrames/z9.png" type="Texture" id=10]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 5 ), ExtResource( 1 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 7 ), ExtResource( 6 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ) ],
+"loop": true,
+"name": "default",
+"speed": 20.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 27.9998
+height = 88.0
+
+[node name="Zubats" type="KinematicBody2D"]
+collision_layer = 2
+collision_mask = 4
+script = ExtResource( 2 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( -1.90735e-06, -9.53674e-07 )
+frames = SubResource( 1 )
+frame = 5
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource( 2 )
+
+[node name="LeftRay" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( -80, 0 )
+collision_mask = 4
+
+[node name="RightRay" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 80, 0 )
+collision_mask = 4

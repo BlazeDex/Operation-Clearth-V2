@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/y2mate.com - Cave Story OST  T01 Access.mp3-18c2ab3fa767f5d1a1d3e0c22ce0cfc9.mp3str"
+
+[deps]
+
+source_file="res://Sonidos/y2mate.com - Cave Story OST  T01 Access.mp3"
+dest_files=[ "res://.import/y2mate.com - Cave Story OST  T01 Access.mp3-18c2ab3fa767f5d1a1d3e0c22ce0cfc9.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

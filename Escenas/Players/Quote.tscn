@@ -1,0 +1,216 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Sprites/SpriteSheets/QuoteSprites.png" type="Texture" id=1]
+[ext_resource path="res://Imgs/QFade.png" type="Texture" id=2]
+[ext_resource path="res://Imgs/armsimage.png" type="Texture" id=3]
+[ext_resource path="res://Sonidos/snd_quote_hurt.wav" type="AudioStream" id=4]
+[ext_resource path="res://Sonidos/snd_quote_die.wav" type="AudioStream" id=7]
+
+[sub_resource type="Animation" id=6]
+resource_name = "Check"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 7 ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "Damage"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 8 ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "Idle"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Body:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 8, 0 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "Walking"
+length = 0.45
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 2, 1, 0, 2, 1 ]
+}
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 78, 79.5 )
+
+[sub_resource type="StyleBoxFlat" id=8]
+bg_color = Color( 0.0235294, 0.686275, 0.141176, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.8, 0.8, 0.8, 0 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id=9]
+bg_color = Color( 0.207843, 0.203922, 0.203922, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0, 0, 0, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id=10]
+bg_color = Color( 0.964706, 0.980392, 0.0352941, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.8, 0.8, 0.8, 0 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="KinematicBody2D" type="KinematicBody2D"]
+
+[node name="Body" type="Sprite" parent="."]
+scale = Vector2( 5, 5 )
+texture = ExtResource( 1 )
+hframes = 11
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+reset_on_save = false
+anims/Check = SubResource( 6 )
+anims/Damage = SubResource( 11 )
+anims/Idle = SubResource( 5 )
+anims/RESET = SubResource( 2 )
+anims/Walking = SubResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -3, -1.5 )
+shape = SubResource( 7 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+limit_left = 0
+limit_top = 0
+limit_right = 100000
+limit_bottom = 600
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+drag_margin_left = 0.3
+drag_margin_top = 0.7
+drag_margin_right = 0.3
+editor_draw_drag_margin = true
+
+[node name="Throw" type="Position2D" parent="."]
+
+[node name="Direction" type="Position2D" parent="Throw"]
+position = Vector2( 78, 21 )
+
+[node name="GUI" type="CanvasLayer" parent="."]
+
+[node name="HealthPoints" type="ProgressBar" parent="GUI"]
+anchor_bottom = 0.01
+margin_left = 61.0
+margin_top = 25.0
+margin_right = 219.0
+margin_bottom = 39.0
+custom_styles/fg = SubResource( 8 )
+custom_styles/bg = SubResource( 9 )
+value = 50.0
+percent_visible = false
+
+[node name="Energy" type="ProgressBar" parent="GUI"]
+anchor_bottom = 0.01
+margin_left = 61.0
+margin_top = 62.0
+margin_right = 219.0
+margin_bottom = 76.0
+custom_styles/fg = SubResource( 10 )
+custom_styles/bg = SubResource( 9 )
+value = 50.0
+percent_visible = false
+
+[node name="Sprite" type="Sprite" parent="GUI"]
+position = Vector2( 35, 28 )
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 2 )
+
+[node name="Gun" type="Sprite" parent="GUI"]
+position = Vector2( 35, 67 )
+scale = Vector2( 1.2, 1.2 )
+texture = ExtResource( 3 )
+hframes = 16
+frame = 13
+
+[node name="Die" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 7 )
+volume_db = 10.0
+
+[node name="Hurt" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+volume_db = 10.0

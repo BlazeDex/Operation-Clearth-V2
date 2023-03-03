@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Imgs/Edificios.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/EdificiosAnimated.gd" type="Script" id=2]
+[ext_resource path="res://Imgs/Cielo.png" type="Texture" id=3]
+
+[node name="ParallaxBackground" type="ParallaxBackground"]
+script = ExtResource( 2 )
+
+[node name="Cielo" type="ParallaxLayer" parent="."]
+motion_mirroring = Vector2( 2700, 0 )
+
+[node name="Sprite" type="Sprite" parent="Cielo"]
+position = Vector2( 1531, 295 )
+scale = Vector2( 1.13444, 1.26282 )
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 2700, 468 )
+
+[node name="Ciudad" type="ParallaxLayer" parent="."]
+motion_mirroring = Vector2( 2700, 0 )
+
+[node name="Sprite" type="Sprite" parent="Ciudad"]
+position = Vector2( 1352, 365 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 2700, 468 )

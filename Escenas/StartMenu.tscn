@@ -1,0 +1,60 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Fuentes/MenuFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Escenas/NubesAnimated.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Escenas/MenuBackgroundAnimation.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scripts/MenuControls.gd" type="Script" id=4]
+[ext_resource path="res://Imgs/Logo.png" type="Texture" id=5]
+[ext_resource path="res://Sonidos/Intro.mp3" type="AudioStream" id=6]
+
+[node name="Control" type="Control"]
+margin_top = -2.0
+margin_right = 1025.0
+margin_bottom = 599.0
+script = ExtResource( 4 )
+
+[node name="VBoxButtons" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -208.5
+margin_top = -68.0
+margin_right = 208.5
+margin_bottom = 68.0
+custom_constants/separation = 30
+
+[node name="Jugar" type="Button" parent="VBoxButtons"]
+margin_right = 417.0
+margin_bottom = 66.0
+custom_colors/font_color_hover = Color( 0.00784314, 0.447059, 0.87451, 1 )
+custom_colors/font_color_pressed = Color( 0.00784314, 0.447059, 0.87451, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "JUGAR"
+flat = true
+
+[node name="Salir" type="Button" parent="VBoxButtons"]
+margin_top = 96.0
+margin_right = 417.0
+margin_bottom = 162.0
+custom_colors/font_color_hover = Color( 0.945098, 0.0313726, 0.196078, 1 )
+custom_colors/font_color_pressed = Color( 0.945098, 0.0313726, 0.196078, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "SALIR DEL JUEGO"
+flat = true
+
+[node name="Ciudad" parent="." instance=ExtResource( 3 )]
+
+[node name="Nubes" parent="." instance=ExtResource( 2 )]
+
+[node name="Logo" type="Sprite" parent="."]
+position = Vector2( 506, 132 )
+texture = ExtResource( 5 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+volume_db = -10.0
+autoplay = true
+
+[connection signal="pressed" from="VBoxButtons/Jugar" to="." method="_on_Jugar_pressed"]
+[connection signal="pressed" from="VBoxButtons/Salir" to="." method="_on_Salir_pressed"]
